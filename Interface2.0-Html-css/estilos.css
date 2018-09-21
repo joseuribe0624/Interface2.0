@@ -1,0 +1,25 @@
+body{
+	background-color: #000000;
+	font-family: 'Montserrat', sans-serif;
+}
+
+
+p,h1,h3,h4,label{
+	color: #ffff;
+}
+
+img{
+    border-radius: 20%;
+}
+
+
+.titles{
+	text-align: center;
+}
+
+
+.not-active {
+  cursor: default;
+  text-decoration: none;
+  color: #ffff;
+}
