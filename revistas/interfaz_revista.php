@@ -1,5 +1,6 @@
 <?php
 	include("backend_revista.php");
+	include("conexion_bd.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-					<form method="GET" onsubmit = "searchTupla(); return false;" >
+				<span><label>Estado del suscriptor: </label>
+				<p id="res">Sin estado actual</p></span>
+				<form method="GET" onsubmit = "searchTupla(); return false;" >
 					<div class="form-group">
 						<p>Validar que ya estás registrado</p>
 						<label for="exampleFormControlInput1">Identificación</label>
@@ -38,8 +41,7 @@
     					<input id ="apellido" type="text" class="form-control" id="exampleFormControlInput1">
     					<label for="exampleFormControlSelect1">Ciudad</label>
 						<select  id ="ciudad" class="form-control" id="exampleFormControlSelect1">
-
-
+							<option value="#">Seleccionar ciudad</option>
 					     <?php 
 					     	while($valores = mysqli_fetch_array($query)){
 					     		echo '<option value="
@@ -53,14 +55,14 @@
 					    </select>
 					</div>
 				</form>
-			
+				<p id="resSus"></p>
 				<form method="POST" onsubmit="suscribeUser(); return false;">
 					<div class="form-group">
 						<p>Suscribete aquí</p>
 						<label for="exampleFormControlInput1">Identificación</label>
-    					<input type="text" class="form-control" id="exampleFormControlInput1">
+    					<input id="id" type="text" class="form-control" id="exampleFormControlInput1">
     					<label for="exampleFormControlInput1">Revistas</label>
-						<select class="form-control" id="exampleFormControlSelect1">
+						<select id="revistas" class="form-control" id="exampleFormControlSelect1">
 					      <?php 
 					     	while($valores = mysqli_fetch_array($queryRevista)){
 					     		echo '<option value="
