@@ -1,6 +1,6 @@
 <?php
-	include("backend_revista.php");
 	include("conexion_bd.php");
+	include("backend.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,6 +8,7 @@
 	<title>Panel de revistas</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 </head>
 <body>
 	<h1>Bienvenidos a la página más importante de revistas de colombia</h1>
@@ -15,79 +16,62 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<span><label>Estado del suscriptor: </label>
-				<p id="res">Sin estado actual</p></span>
-				<form method="GET" onsubmit = "searchTupla(); return false;" >
+				<span><label>Estado del suscriptor: </label> <p id="res">Sin estado actual</p></span>
+				<form method="GET" onsubmit="searchTupla(); return false;">
 					<div class="form-group">
 						<p>Validar que ya estás registrado</p>
-						<label for="exampleFormControlInput1">Identificación</label>
-    					<input  type="text" class="form-control" id="exampleFormControlInput1">
-						<label for="exampleFormControlInput1">Buscar</label>
-    					<input  id ="buscar" type="text" class="form-control" id="exampleFormControlInput1" placeholder="numero de Identificación">
-					    <button type="button" class="btn btn-success" style="margin-top: 10px">Buscar</button>
+						<label>Buscar</label>
+    					<input type="text" class="form-control" placeholder="numero de Identificación" name="search" id="search">
+					    <button type="submit" class="btn btn-success" style="margin-top: 10px">Buscar</button>
 					</div>
 				</form>
-
 				<form method="POST" onsubmit="insertUser(); return false;">
 					<div class="form-group">
 						<p>Ingresa tus datos aquí si aún no estás registrado en el sistema</p>
-						<label  for="exampleFormControlInput1">Identificación</label>
-    					<input  id ="identificacion" type="text" class="form-control" id="exampleFormControlInput1">
-						<label for="exampleFormControlInput1">Nombre</label>
-    					<input id ="nombre" type="text" class="form-control" id="exampleFormControlInput1">
-    					<label for="exampleFormControlInput1">Edad</label>
-    					<input id ="edad" type="text" class="form-control" id="exampleFormControlInput1">
-    					<label for="exampleFormControlInput1">Apellido</label>
-    					<input id ="apellido" type="text" class="form-control" id="exampleFormControlInput1">
-    					<label for="exampleFormControlSelect1">Ciudad</label>
-						<select  id ="ciudad" class="form-control" id="exampleFormControlSelect1">
-							<option value="#">Seleccionar ciudad</option>
-					     <?php 
-					     	while($valores = mysqli_fetch_array($query)){
-					     		echo '<option value="
-					     		'.$valores['cod_ciudad'].'">
-					     		'.$valores['nombre_ciudad'].'
-					     		</option>';
-					     	}
-
-
-					     ?>
+						<label>Identificación</label>
+    					<input type="text" class="form-control" id="identification">
+						<label>Nombre</label>
+    					<input type="text" class="form-control" id="first_name">
+    					<label>Apellido</label>
+    					<input type="text" class="form-control" id="last_name">
+    					<label>Edad</label>
+    					<input type="text" class="form-control" id="age">
+    					<label>Ciudad</label>
+						<select class="form-control" id="city">
+							<option value="#">Seleccionar una opción</option>
+							<?php 
+								while($valores = mysqli_fetch_array($query))
+								{
+									echo '<option value="'.$valores['cod_ciudad'].'">'.$valores['nombre_ciudad'].'</option>';
+								}
+							?>
 					    </select>
 					</div>
+					<button type="submit" class="btn btn-success" style="margin-top: 10px">Registrarse</button>
 				</form>
 				<p id="resSus"></p>
 				<form method="POST" onsubmit="suscribeUser(); return false;">
 					<div class="form-group">
 						<p>Suscribete aquí</p>
-						<label for="exampleFormControlInput1">Identificación</label>
-    					<input id="id" type="text" class="form-control" id="exampleFormControlInput1">
-    					<label for="exampleFormControlInput1">Revistas</label>
-						<select id="revistas" class="form-control" id="exampleFormControlSelect1">
-					      <?php 
-					     	while($valores = mysqli_fetch_array($queryRevista)){
-					     		echo '<option value="
-					     		'.$valores['id_revista'].'">
-					     		'.$valores['nombre_revista'].'
-					     		</option>';
-
-					     	}
-
-					     ?>
+						<label>Identificación</label>
+    					<input type="text" class="form-control" id="identification_sus">
+    					<label>Revistas</label>
+						<select class="form-control" id="magazine">
+					      	<?php 
+								while($valores = mysqli_fetch_array($query2))
+								{
+									echo '<option value="'.$valores['id_revista'].'">'.$valores['nombre_revista'].'</option>';
+								}
+							?>
 					    </select>
 					    <div></div>
-					    <button type="button" class="btn btn-success" style="margin-top: 10px">Suscribirse</button>
+					    <button type="submit" class="btn btn-success" style="margin-top: 10px">Suscribirse</button>
 					</div>
-					<button type="submit" class="btn btn-success" style="margin-top: 10px">Registrarse</button>
 				</form>
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript" src="subject_base.js"></script>
 </body>
 </html>
-
-
-
-	
-
-
-

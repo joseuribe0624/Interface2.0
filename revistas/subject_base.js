@@ -1,57 +1,49 @@
+
+//JOSE DAVID GUTIERREZ, CARLOS MERA
 function searchTupla(){
-	let search = document.getElementById('buscar').value;
-	var dataEn = 'buscar=' + search;
+	let ident = document.getElementById("search").value;
+    let dataEn = 'ident='+ident; 
 
-	$.ajax({
-		type:'GET',
-		url : 'src/backend_revista.php',
-		data:dataEn,
-		success: function(resp){
-			$('#res').html(resp)
-		}
-	});
-
+    $.ajax({
+    	type: 'GET',
+    	url: 'backend.php',
+    	data: dataEn,
+    	success:function(resp){
+    		$('#res').html(resp)
+    	}
+    });
 }
 
 function insertUser(){
-	let idendification = document.getElementById('idendificacion').value;
-	let firstName = document.getElementById('name').value;
-	let lastName = document.getElementById('apellido').value;
-	let age = document.getElementById('edad').value;
-	let city = document.getElementById('ciudad').value;
-
-	var dataEn = {
-		'idendificacion': idendification,
-		'firstName': firstName,
-		'lastName': lastName,
-		'age': age,
-		'city': city
-	}
+	let ident = document.getElementById("identification").value;
+	let f_name = document.getElementById("first_name").value;
+	let l_name = document.getElementById("last_name").value;
+	let age = document.getElementById("age").value;
+	let city = document.getElementById("city").value;
+	let dataEn = {
+		'ident' : ident,
+		'f_name' : f_name,
+		'l_name' : l_name,
+		'age' : age,
+		'city' : city
+	};
 	$.ajax({
-		type:'POST',
-		url: 'src/backend_revista.php',
-		data:dataEn,
-		success: function(resp){
-			$('#res').html(resp)
-		}
-	})
+	 	type: 'POST',
+    	url: 'backend.php',
+    	data: dataEn,
+    	success:function(resp){
+    		$('#res').html(resp)
+    	}
+
+	});
+	
 }
 
 function suscribeUser(){
-	let idendificacion = document.getElementById('id').value;
-	let revistas = document.getElementById('revistas').value;
-
-	var dataEn = {
-		'idendificacion': idendification,
-		'revistas': revistas,
-	}
-	
-	$.ajax({
-		type:'POST',
-		url: 'src/backend_revista.php',
-		data:dataEn,
-		success: function(resp){
-			$('#res').html(resp)
-		}
-	})
+	let ident = document.getElementById("identification_sus").value;
+	let rev = document.getElementById("magazine").value;
+	let dataEn = {
+		'ident' : ident,
+		'rev' : rev
+	};
 }
