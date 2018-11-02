@@ -22,7 +22,8 @@ class GameLogic extends Component {
 	constructor(){
 		super();
 		this.state = {imageBase: linkA, positionX: 10, positionY: 10} // se inicializan los atributos del juego
-		this.state = {bad : diamond2,positionX:20, positionY:20}
+		// no muy seguro de eso
+		//this.state = {bad : diamond2,positionX:20, positionY:20}
 	}
 
 	componentDidMount(){
@@ -57,7 +58,15 @@ class GameLogic extends Component {
 		linkZelda.onload = () => {
             this.imageNode.getLayer().batchDraw();
         };
-   
+        badDiamond.src = this.state.bad;
+		badDiamond.onload = () => {
+            this.imageNode.getLayer().batchDraw();
+        };
+
+      	//goodDiamond.src = this.state.good;
+		//goodDiamond.onload = () => {
+        //    this.imageNode.getLayer().batchDraw();
+        //};
 		return(
 			<div className="row row-game">
 				<div className = "col-md-12">
@@ -87,7 +96,16 @@ class GameLogic extends Component {
 		                        }}
 							/>
 
-							
+							<Image 
+								image={badDiamond}
+		                        y={this.state.goodY}
+		                        x={this.state.goodX}
+		                        width={20}
+		                        height={40}
+		                        ref={node => {
+		                          this.imageNode = node;
+		                        }}
+							/>
 						</Layer>
 					</Stage>
 				</div>
